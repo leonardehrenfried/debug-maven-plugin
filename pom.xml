@@ -31,5 +31,23 @@
 			<version>2.2</version>
 		</dependency>
 	</dependencies>
+	
+	<distributionManagement>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>MyToys Nexus Snapshot Repository</name>
+			<url>http://nadon:8080/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>releases</id>
+			<name>MyToys Nexus Release Repository</name>
+			<url>http://nadon:8080/nexus/content/repositories/releases</url>
+		</repository>
+		<site>
+			<id>mt-project-site</id>
+			<url>scp://repository.ber.mytoys.de/usr/local/www/repository/docs/project/${project.groupId}/${project.artifactId}</url>
+		</site>
+	</distributionManagement>
+
 
 </project>
