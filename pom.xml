@@ -18,6 +18,7 @@
 		<developerConnection>scm:git:ssh://gitlive/usr/local/git/repos/shop/debug_maven_plugin.git</developerConnection>
 		<url>https://gitlive.ber.mytoys.de/?p=shop/debug_maven_plugin.git;</url>
 	</scm>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.maven</groupId>
