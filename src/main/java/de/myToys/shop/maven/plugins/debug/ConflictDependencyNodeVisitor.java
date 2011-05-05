@@ -4,7 +4,9 @@ import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.SetMultimap;
 import java.io.Writer;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
+import java.util.Stack;
 import org.apache.maven.shared.dependency.tree.DependencyNode;
 import org.apache.maven.shared.dependency.tree.traversal.DependencyNodeVisitor;
 
@@ -37,28 +39,56 @@ public class ConflictDependencyNodeVisitor implements DependencyNodeVisitor {
 		StringBuilder buf = new StringBuilder();
 		for (String key : dependencies.keySet()) {
 			if (getDifferingVersions(key) > 1) {
+				//Überschrift
 				buf.append('\n');
-				buf.append("===");
+				buf.append('\n');
+				buf.append("=== ");
 				buf.append(key);
-				buf.append("===");
+				buf.append(" ===");
 				buf.append('\n');
+
 				for (DependencyNode dn : dependencies.get(key)) {
-					buf.append(dn.getArtifact().getArtifactId());
-					buf.append(':');
-					buf.append(dn.getArtifact().getVersionRange());
-					buf.append('\n');
+					//einzelne Artefakte
+					buf.append(inheritanceToString(dn));
 				}
 			}
 		}
 		return buf.toString();
 	}
 
+	/**
+	 * Prüft wie viele verschiedene Versionen das Artefakt mit key im Dependency Tree hat.
+	 * @param key
+	 * @return 
+	 */
 	private int getDifferingVersions(String key) {
 		Set<String> versions = new HashSet();
-		for(DependencyNode dn : dependencies.get(key)){
+		for (DependencyNode dn : dependencies.get(key)) {
 			versions.add(dn.getArtifact().getVersion());
 		}
-		
+
 		return versions.size();
+	}
+
+	private static String inheritanceToString(DependencyNode dn) {
+		Stack<DependencyNode> parents = new Stack<DependencyNode>();
+		StringBuilder buf = new StringBuilder();
+		buf.append(dn.getArtifact().getArtifactId());
+		buf.append(':');
+		buf.append(dn.getArtifact().getVersionRange());
+		buf.append('\n');
+
+		while (dn.getParent() != null) {
+			dn = dn.getParent();
+			parents.add(dn);
+		}
+
+		while(!parents.isEmpty()) {
+			DependencyNode i=parents.pop();
+			buf.append(i.getArtifact().getArtifactId());
+			buf.append(" -> ");
+		}
+
+		return buf.toString();
 	}
 }
