@@ -3,6 +3,8 @@ package de.myToys.shop.maven.plugins.debug;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.SetMultimap;
 import java.io.Writer;
+import java.util.HashSet;
+import java.util.Set;
 import org.apache.maven.shared.dependency.tree.DependencyNode;
 import org.apache.maven.shared.dependency.tree.traversal.DependencyNodeVisitor;
 
@@ -34,7 +36,7 @@ public class ConflictDependencyNodeVisitor implements DependencyNodeVisitor {
 	public String getConflictInfo() {
 		StringBuilder buf = new StringBuilder();
 		for (String key : dependencies.keySet()) {
-			if (dependencies.get(key).size() > 1) {
+			if (getDifferingVersions(key) > 1) {
 				buf.append('\n');
 				buf.append("===");
 				buf.append(key);
@@ -49,5 +51,14 @@ public class ConflictDependencyNodeVisitor implements DependencyNodeVisitor {
 			}
 		}
 		return buf.toString();
+	}
+
+	private int getDifferingVersions(String key) {
+		Set<String> versions = new HashSet();
+		for(DependencyNode dn : dependencies.get(key)){
+			versions.add(dn.getArtifact().getVersion());
+		}
+		
+		return versions.size();
 	}
 }
