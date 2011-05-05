@@ -18,7 +18,6 @@
 		<developerConnection>scm:git:ssh://gitlive/usr/local/git/repos/shop/debug_maven_plugin.git</developerConnection>
 		<url>https://gitlive.ber.mytoys.de/?p=shop/debug_maven_plugin.git;</url>
 	</scm>
-	
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.maven</groupId>
@@ -29,6 +28,11 @@
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-dependency-plugin</artifactId>
 			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>r09</version>
 		</dependency>
 	</dependencies>
 	
