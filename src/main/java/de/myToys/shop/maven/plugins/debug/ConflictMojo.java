@@ -14,7 +14,7 @@ import org.apache.maven.shared.dependency.tree.traversal.DependencyNodeVisitor;
 public class ConflictMojo extends AbstractDebugMojo {
 	
 	public DependencyNodeVisitor getSerializingDependencyNodeVisitor(Writer writer) {
-	 return new ConflictDependencyNodeVisitor();
+	 return new ConflictDependencyNodeVisitor(writer);
 	}
 
 }
