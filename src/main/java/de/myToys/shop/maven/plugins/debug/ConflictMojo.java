@@ -1,6 +1,8 @@
 package de.myToys.shop.maven.plugins.debug;
 
 import java.io.Writer;
+import org.apache.maven.shared.dependency.tree.DependencyNode;
+import org.apache.maven.shared.dependency.tree.traversal.BuildingDependencyNodeVisitor;
 
 import org.apache.maven.shared.dependency.tree.traversal.DependencyNodeVisitor;
 
@@ -15,6 +17,15 @@ public class ConflictMojo extends AbstractDebugMojo {
 	
 	public DependencyNodeVisitor getSerializingDependencyNodeVisitor(Writer writer) {
 	 return new ConflictDependencyNodeVisitor(writer);
+	}
+	
+	@Override
+	protected String serializeDependencyTree(DependencyNode rootNode) {
+		ConflictDependencyNodeVisitor conflictVisitor = new ConflictDependencyNodeVisitor(null);
+		DependencyNodeVisitor buildingVisitor = new BuildingDependencyNodeVisitor(conflictVisitor);
+		rootNode.accept(buildingVisitor);
+		
+		return conflictVisitor.getConflictInfo();
 	}
 
 }

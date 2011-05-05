@@ -2,10 +2,7 @@ package de.myToys.shop.maven.plugins.debug;
 
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.SetMultimap;
-import java.io.IOException;
 import java.io.Writer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.maven.shared.dependency.tree.DependencyNode;
 import org.apache.maven.shared.dependency.tree.traversal.DependencyNodeVisitor;
 
@@ -19,22 +16,38 @@ public class ConflictDependencyNodeVisitor implements DependencyNodeVisitor {
 	Writer writer;
 
 	public ConflictDependencyNodeVisitor(Writer writer) {
-		this.writer = writer;
+		if (writer != null) {
+			throw new UnsupportedOperationException("this visitor does not use the writer, please call #getConflictInfo() after #visit()");
+		}
 	}
 
 	public boolean visit(DependencyNode dn) {
-		try {
-			String ga = dn.getArtifact().getGroupId() + ':' + dn.getArtifact().getArtifactId();
-			dependencies.put(ga, dn);
-			writer.append(ga);
-			writer.append('\n');
-		} catch (IOException ex) {
-			Logger.getLogger(ConflictDependencyNodeVisitor.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		String ga = dn.getArtifact().getGroupId() + ':' + dn.getArtifact().getArtifactId();
+		dependencies.put(ga, dn);
 		return true;
 	}
 
 	public boolean endVisit(DependencyNode dn) {
 		return true;
+	}
+
+	public String getConflictInfo() {
+		StringBuilder buf = new StringBuilder();
+		for (String key : dependencies.keySet()) {
+			if (dependencies.get(key).size() > 1) {
+				buf.append('\n');
+				buf.append("===");
+				buf.append(key);
+				buf.append("===");
+				buf.append('\n');
+				for (DependencyNode dn : dependencies.get(key)) {
+					buf.append(dn.getArtifact().getArtifactId());
+					buf.append(':');
+					buf.append(dn.getArtifact().getVersionRange());
+					buf.append('\n');
+				}
+			}
+		}
+		return buf.toString();
 	}
 }
