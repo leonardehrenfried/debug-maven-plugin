@@ -73,22 +73,24 @@ public class ConflictDependencyNodeVisitor implements DependencyNodeVisitor {
 	private static String inheritanceToString(DependencyNode dn) {
 		Stack<DependencyNode> parents = new Stack<DependencyNode>();
 		StringBuilder buf = new StringBuilder();
+		
+		DependencyNode i=dn;
+		while (i.getParent() != null) {
+			i = i.getParent();
+			parents.add(i);
+		}
+
+		while(!parents.isEmpty()) {
+			DependencyNode j=parents.pop();
+			buf.append(j.getArtifact().getArtifactId());
+			buf.append(" -> ");
+		}
+
 		buf.append(dn.getArtifact().getArtifactId());
 		buf.append(':');
 		buf.append(dn.getArtifact().getVersionRange());
 		buf.append('\n');
-
-		while (dn.getParent() != null) {
-			dn = dn.getParent();
-			parents.add(dn);
-		}
-
-		while(!parents.isEmpty()) {
-			DependencyNode i=parents.pop();
-			buf.append(i.getArtifact().getArtifactId());
-			buf.append(" -> ");
-		}
-
+		
 		return buf.toString();
 	}
 }
