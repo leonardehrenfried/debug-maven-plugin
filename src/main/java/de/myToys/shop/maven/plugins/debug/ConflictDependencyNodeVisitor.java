@@ -4,7 +4,6 @@ import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.SetMultimap;
 import java.io.Writer;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Set;
 import java.util.Stack;
 import org.apache.maven.shared.dependency.tree.DependencyNode;
@@ -75,7 +74,7 @@ public class ConflictDependencyNodeVisitor implements DependencyNodeVisitor {
 		StringBuilder buf = new StringBuilder();
 		
 		DependencyNode i=dn;
-		while (i.getParent() != null) {
+		while(i.getParent() != null && i.getParent().getParent()!=null) {
 			i = i.getParent();
 			parents.add(i);
 		}
@@ -83,6 +82,8 @@ public class ConflictDependencyNodeVisitor implements DependencyNodeVisitor {
 		while(!parents.isEmpty()) {
 			DependencyNode j=parents.pop();
 			buf.append(j.getArtifact().getArtifactId());
+			buf.append(':');
+			buf.append(j.getArtifact().getVersion());
 			buf.append(" -> ");
 		}
 
