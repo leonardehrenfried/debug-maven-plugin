@@ -1,13 +1,6 @@
 package de.myToys.shop.maven.plugins.debug;
 
 /*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -34,6 +27,18 @@ import org.apache.maven.shared.dependency.tree.traversal.SerializingDependencyNo
  * @goal tree
  */
 public class TreeMojo extends AbstractDebugMojo {
+	
+	/**
+	 * If specified, this parameter will cause the dependency tree to be written using the specified format. Currently
+	 * supported format are text, dot, graphml and tgf.
+	 *
+	 * These formats can be plotted to image files. An example of how to plot a dot file using
+	 * pygraphviz can be found <a href="http://networkx.lanl.gov/pygraphviz/tutorial.html#layout-and-drawing">here</a>
+	 *
+	 * @parameter expression="${outputType}" default-value="text"
+	 * @since 2.1
+	 */
+	protected String outputType;
 	
 	public DependencyNodeVisitor getSerializingDependencyNodeVisitor(Writer writer) {
 		if ("graphml".equals(outputType)) {

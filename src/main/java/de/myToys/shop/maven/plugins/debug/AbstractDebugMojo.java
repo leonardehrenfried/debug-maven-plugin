@@ -1,14 +1,6 @@
 package de.myToys.shop.maven.plugins.debug;
 
 /*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
@@ -18,7 +10,6 @@ package de.myToys.shop.maven.plugins.debug;
  * specific language governing permissions and limitations
  * under the License.
  */
-import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -116,31 +107,6 @@ abstract class AbstractDebugMojo extends AbstractMojo {
 	 */
 	protected DependencyTreeBuilder dependencyTreeBuilder;
 	/**
-	 * If specified, this parameter will cause the dependency tree to be written to the path specified, instead of
-	 * writing to the console.
-	 * @deprecated use outputFile instead.
-	 * @parameter expression="${output}"
-	 */
-	protected File output;
-	/**
-	 * If specified, this parameter will cause the dependency tree to be written to the path specified, instead of
-	 * writing to the console.
-	 * @parameter expression="${outputFile}"
-	 * @since 2.0-alpha-5
-	 */
-	protected File outputFile;
-	/**
-	 * If specified, this parameter will cause the dependency tree to be written using the specified format. Currently
-	 * supported format are text, dot, graphml and tgf.
-	 *
-	 * These formats can be plotted to image files. An example of how to plot a dot file using
-	 * pygraphviz can be found <a href="http://networkx.lanl.gov/pygraphviz/tutorial.html#layout-and-drawing">here</a>
-	 *
-	 * @parameter expression="${outputType}" default-value="text"
-	 * @since 2.1
-	 */
-	protected String outputType;
-	/**
 	 * The scope to filter by when resolving the dependency tree, or <code>null</code> to include dependencies from
 	 * all scopes. Note that this feature does not currently work due to MNG-3236.
 	 *
@@ -228,11 +194,6 @@ abstract class AbstractDebugMojo extends AbstractMojo {
 		}
 
 
-		if (output != null) {
-			getLog().warn("The parameter output is deprecated. Use outputFile instead.");
-			this.outputFile = output;
-		}
-
 		ArtifactFilter artifactFilter = createResolvingArtifactFilter();
 
 		try {
@@ -241,16 +202,10 @@ abstract class AbstractDebugMojo extends AbstractMojo {
 			rootNode =
 							dependencyTreeBuilder.buildDependencyTree(project, localRepository, artifactFactory,
 							artifactMetadataSource, artifactFilter, artifactCollector);
-			
+
 			String dependencyTreeString = serializeDependencyTree(rootNode);
 
-			if (outputFile != null) {
-				DependencyUtil.write(dependencyTreeString, outputFile, this.appendOutput, getLog());
-
-				getLog().info("Wrote dependency tree to: " + outputFile);
-			} else {
-				DependencyUtil.log(dependencyTreeString, getLog());
-			}
+			DependencyUtil.log(dependencyTreeString, getLog());
 		} catch (DependencyTreeBuilderException exception) {
 			throw new MojoExecutionException("Cannot build project dependency tree", exception);
 		} catch (IOException exception) {
