@@ -1,7 +1,6 @@
 package de.myToys.shop.maven.plugins.debug;
 
 /*
- *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
@@ -23,7 +22,7 @@ import org.apache.maven.shared.dependency.tree.traversal.DependencyNodeVisitor;
 
 /**
  *
-  * @author <a href="mailto:leonard.ehrenfried@web.de">Leonard Ehrenfried</a>
+ * @author <a href="mailto:leonard.ehrenfried@web.de">Leonard Ehrenfried</a>
  */
 public class ConflictDependencyNodeVisitor implements DependencyNodeVisitor {
 
