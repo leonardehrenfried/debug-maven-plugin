@@ -6,18 +6,39 @@
 	<packaging>maven-plugin</packaging>
 	<version>1.5-SNAPSHOT</version>
 	<name>Debug-Plugin</name>
-	<description>Plugin, um verschieden Debug-Ausgaben anzeigen zu lassen</description>
+	<description>Plugin helping developers to debug dependency conflicts</description>
+	
+	<developers>
+		<developer>
+			<id>lenni</id>
+			<name>Leonard Ehrenfried</name>
+			<email>leonard.ehrenfried@web.de</email>
+		</developer>
+	</developers>
   
 	<properties>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+	
 	<scm>
-		<connection>scm:git:git://gitlive/usr/local/git/repos/shop/debug_maven_plugin.git</connection>
-		<developerConnection>scm:git:ssh://gitlive/usr/local/git/repos/shop/debug_maven_plugin.git</developerConnection>
-		<url>https://gitlive.ber.mytoys.de/?p=shop/debug_maven_plugin.git;</url>
+		<connection>scm:git:git@github.com:lenniboy/debug-maven-plugin.git</connection>
+		<developerConnection>scm:git:git://github.com/lenniboy/debug-maven-plugin.git</developerConnection>
+		<url>https://github.com/lenniboy/debug-maven-plugin</url>
 	</scm>
+	
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 	
 	<dependencies>
 		<dependency>
@@ -36,19 +57,4 @@
 			<version>r09</version>
 		</dependency>
 	</dependencies>
-	
-	<distributionManagement>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>MyToys Nexus Snapshot Repository</name>
-			<url>http://nadon:8080/nexus/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>releases</id>
-			<name>MyToys Nexus Release Repository</name>
-			<url>http://nadon:8080/nexus/content/repositories/releases</url>
-		</repository>
-	</distributionManagement>
-
-
 </project>
