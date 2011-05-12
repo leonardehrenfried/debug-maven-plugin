@@ -23,7 +23,7 @@ import org.apache.maven.shared.dependency.tree.traversal.DependencyNodeVisitor;
 
 /**
  *
- * @author Leonard Ehrenfried
+  * @author <a href="mailto:leonard.ehrenfried@web.de">Leonard Ehrenfried</a>
  */
 public class ConflictDependencyNodeVisitor implements DependencyNodeVisitor {
 

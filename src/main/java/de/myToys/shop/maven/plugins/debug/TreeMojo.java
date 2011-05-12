@@ -23,7 +23,7 @@ import org.apache.maven.shared.dependency.tree.traversal.SerializingDependencyNo
  * Displays the dependency tree for this project without requiring conflicts to be resolved
  * first.
  *
- * @author Leonard Ehrenfried
+ * @author <a href="mailto:leonard.ehrenfried@web.de">Leonard Ehrenfried</a>
  * @goal tree
  */
 public class TreeMojo extends AbstractDebugMojo {

@@ -51,7 +51,6 @@ import org.apache.maven.shared.dependency.tree.traversal.SerializingDependencyNo
 import org.apache.maven.shared.dependency.tree.traversal.SerializingDependencyNodeVisitor.TreeTokens;
 
 /**
- * Displays the dependency tree for this project.
  *
  * @author <a href="mailto:markhobson@gmail.com">Mark Hobson</a>
  */

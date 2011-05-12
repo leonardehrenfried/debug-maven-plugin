@@ -10,7 +10,7 @@ import org.apache.maven.shared.dependency.tree.traversal.DependencyNodeVisitor;
  * Displays the dependency tree for conflicting artifacts without requiring conflicts to be resolved
  * first.
  *
- * @author Leonard Ehrenfried
+ * @author <a href="mailto:leonard.ehrenfried@web.de">Leonard Ehrenfried</a>
  * @goal conflict
  */
 public class ConflictMojo extends AbstractDebugMojo {
