@@ -1,4 +1,4 @@
-package de.myToys.shop.maven.plugins.debug;
+package de.mytoys.maven.plugins.debug;
 
 import java.io.Writer;
 import org.apache.maven.shared.dependency.tree.DependencyNode;

@@ -9,7 +9,7 @@ It has the following goals:
 ##`tree`
 *Command line*:
 
-    mvn de.myToys.maven.plugins:debug-maven-plugin:tree
+    mvn de.mytoys.maven.plugins:debug-maven-plugin:tree
 
 This goal is a slightly modified version of `dependency:resolve`. The difference is that `dependency:resolve` requires an already resolved dependeny tree, which is obviously not available in the case of a conflict.
 
@@ -19,7 +19,7 @@ Hence, the tree shown by this goal **might still contain version conflicts**.
 
 *Command line*:
 
-    mvn de.myToys.maven.plugins:debug-maven-plugin:conflict
+    mvn de.mytoys.maven.plugins:debug-maven-plugin:conflict
 
 Shows direct and transitive artifacts and their paths to the current project *sorted by artifactId* if they are determined to possibly contain a version conflict. Again, for this to work the dependency tree is not resolved fully which means this **can contain version conflicts**.
 
@@ -28,7 +28,7 @@ Shows direct and transitive artifacts and their paths to the current project *so
 If you add the following to your `settings.xml`
 
     <pluginGroups>
-     <pluginGroup>de.myToys.maven.plugins</pluginGroup>
+     <pluginGroup>de.mytoys.maven.plugins</pluginGroup>
     </pluginGroups>
 
 you can call the plugin like this:

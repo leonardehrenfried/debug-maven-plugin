@@ -1,4 +1,4 @@
-package de.myToys.shop.maven.plugins.debug;
+package de.mytoys.maven.plugins.debug;
 
 /*
  * http://www.apache.org/licenses/LICENSE-2.0
