@@ -27,8 +27,8 @@
 	</parent>
 	
 	<scm>
-		<connection>scm:git:git@github.com:lenniboy/debug-maven-plugin.git</connection>
-		<developerConnection>scm:git:git://github.com/lenniboy/debug-maven-plugin.git</developerConnection>
+		<connection>scm:git:git://github.com/lenniboy/debug-maven-plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:lenniboy/debug-maven-plugin.git</developerConnection>
 		<url>https://github.com/lenniboy/debug-maven-plugin</url>
 	</scm>
 	
