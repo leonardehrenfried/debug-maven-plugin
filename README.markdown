@@ -4,7 +4,7 @@ Sadly, if Maven hits a version conflict whilst resolving artifact dependencies t
 
 This plugin assists the developer to debug exactly these dependency resolution problems.
 
-It has the following goals:
+It has the following goals (the artifact has been uploaded to Maven Central so will be available without specifying a separate repository):
 
 ##`tree`
 *Command line*:
