@@ -4,7 +4,7 @@
 	<groupId>de.mytoys.maven.plugins</groupId>
 	<artifactId>debug-maven-plugin</artifactId>
 	<packaging>maven-plugin</packaging>
-	<version>1.6-SNAPSHOT</version>
+	<version>1.7-SNAPSHOT</version>
 	<name>Debug-Plugin</name>
 	<description>Plugin helping developers to debug dependency conflicts</description>
 	
@@ -26,6 +26,23 @@
 		<version>7</version>
 	</parent>
 	
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 	<scm>
 		<connection>scm:git:git://github.com/lenniboy/debug-maven-plugin.git</connection>
 		<developerConnection>scm:git:git@github.com:lenniboy/debug-maven-plugin.git</developerConnection>
@@ -57,4 +74,17 @@
 			<version>r09</version>
 		</dependency>
 	</dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>codecare01-libs-release</id>
+            <name>codecare01-releases</name>
+            <url>http://codecare01:8081/artifactory/libs-release-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>codecare01-snapshot</id>
+            <name>codecare01-snapshots</name>
+            <url>http://codecare01:8081/artifactory/libs-snapshot-local</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

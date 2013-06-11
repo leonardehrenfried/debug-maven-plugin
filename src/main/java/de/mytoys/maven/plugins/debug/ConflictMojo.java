@@ -1,6 +1,8 @@
 package de.mytoys.maven.plugins.debug;
 
 import java.io.Writer;
+
+import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.shared.dependency.tree.DependencyNode;
 import org.apache.maven.shared.dependency.tree.traversal.BuildingDependencyNodeVisitor;
 
@@ -15,6 +17,8 @@ import org.apache.maven.shared.dependency.tree.traversal.DependencyNodeVisitor;
  */
 public class ConflictMojo extends AbstractDebugMojo {
 	
+	boolean errorFound = false;
+
 	public DependencyNodeVisitor getSerializingDependencyNodeVisitor(Writer writer) {
 	 return new ConflictDependencyNodeVisitor(writer);
 	}
@@ -25,7 +29,18 @@ public class ConflictMojo extends AbstractDebugMojo {
 		DependencyNodeVisitor buildingVisitor = new BuildingDependencyNodeVisitor(conflictVisitor);
 		rootNode.accept(buildingVisitor);
 		
-		return conflictVisitor.getConflictInfo();
+		String conflictInfo = conflictVisitor.getConflictInfo();
+		if (errorFound == false) errorFound = conflictVisitor.conflictsFound;
+		return conflictInfo;
 	}
 
+	@Override
+	protected void postprocessResult() throws MojoExecutionException
+	{
+	 	if (errorFound && failOnConflict)
+	    {
+		    String s = "Conflicts found in conflict resolution";
+		    throw new MojoExecutionException(this, s, s);
+	    }
+	}
 }

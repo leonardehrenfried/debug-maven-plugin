@@ -28,6 +28,7 @@ public class ConflictDependencyNodeVisitor implements DependencyNodeVisitor {
 
 	SetMultimap<String, DependencyNode> dependencies = LinkedHashMultimap.create();
 	Writer writer;
+	boolean conflictsFound = false;
 
 	public ConflictDependencyNodeVisitor(Writer writer) {
 		if (writer != null) {
@@ -61,9 +62,15 @@ public class ConflictDependencyNodeVisitor implements DependencyNodeVisitor {
 					//einzelne Artefakte
 					buf.append(inheritanceToString(dn));
 				}
+				conflictsFound = true;
 			}
 		}
 		return buf.toString();
+	}
+
+	public boolean isConflictsFound()
+	{
+		return conflictsFound;
 	}
 
 	/**
