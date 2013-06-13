@@ -172,6 +172,11 @@ abstract class AbstractDebugMojo extends AbstractMojo {
 	 */
 	protected boolean appendOutput;
 
+	/**
+	 * Whether to fail build when a conflict was found
+	 * @parameter expression="${failOnConflict}" default-value="false"
+	 */
+	protected boolean failOnConflict;
 	// Mojo methods -----------------------------------------------------------
 
 	/*
@@ -205,6 +210,9 @@ abstract class AbstractDebugMojo extends AbstractMojo {
 			String dependencyTreeString = serializeDependencyTree(rootNode);
 
 			DependencyUtil.log(dependencyTreeString, getLog());
+
+			postprocessResult();
+
 		} catch (DependencyTreeBuilderException exception) {
 			throw new MojoExecutionException("Cannot build project dependency tree", exception);
 		} catch (IOException exception) {
@@ -212,6 +220,8 @@ abstract class AbstractDebugMojo extends AbstractMojo {
 		}
 
 	}
+
+	protected abstract void postprocessResult() throws MojoExecutionException;
 
 	// public methods ---------------------------------------------------------
 	/**
