@@ -1,90 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.mytoys.maven.plugins</groupId>
-	<artifactId>debug-maven-plugin</artifactId>
-	<packaging>maven-plugin</packaging>
-	<version>1.7-SNAPSHOT</version>
-	<name>Debug-Plugin</name>
-	<description>Plugin helping developers to debug dependency conflicts</description>
-	
-	<developers>
-		<developer>
-			<id>lenni</id>
-			<name>Leonard Ehrenfried</name>
-			<email>leonard.ehrenfried@web.de</email>
-		</developer>
-	</developers>
-  
-	<properties>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-	</properties>
-	
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>7</version>
-	</parent>
-	
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-	<scm>
-		<connection>scm:git:git://github.com/lenniboy/debug-maven-plugin.git</connection>
-		<developerConnection>scm:git:git@github.com:lenniboy/debug-maven-plugin.git</developerConnection>
-		<url>https://github.com/lenniboy/debug-maven-plugin</url>
-	</scm>
-	
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-	
-	<dependencies>
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-plugin-api</artifactId>
-			<version>2.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-dependency-plugin</artifactId>
-			<version>2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>r09</version>
-		</dependency>
-	</dependencies>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.mytoys.maven.plugins</groupId>
+  <artifactId>debug-maven-plugin</artifactId>
+  <packaging>maven-plugin</packaging>
+  <version>1.7-SNAPSHOT</version>
+  <name>Debug-Plugin</name>
+  <description>Plugin helping developers to debug dependency conflicts</description>
 
-    <distributionManagement>
-        <repository>
-            <id>codecare01-libs-release</id>
-            <name>codecare01-releases</name>
-            <url>http://codecare01:8081/artifactory/libs-release-local</url>
-        </repository>
-        <snapshotRepository>
-            <id>codecare01-snapshot</id>
-            <name>codecare01-snapshots</name>
-            <url>http://codecare01:8081/artifactory/libs-snapshot-local</url>
-        </snapshotRepository>
-    </distributionManagement>
+  <developers>
+    <developer>
+      <id>lenni</id>
+      <name>Leonard Ehrenfried</name>
+      <email>leonard.ehrenfried@web.de</email>
+    </developer>
+  </developers>
+
+  <properties>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.2.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <scm>
+    <connection>scm:git:git://github.com/lenniboy/debug-maven-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:lenniboy/debug-maven-plugin.git</developerConnection>
+    <url>https://github.com/lenniboy/debug-maven-plugin</url>
+  </scm>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-dependency-plugin</artifactId>
+      <version>2.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>r09</version>
+    </dependency>
+  </dependencies>
+
+  <distributionManagement>
+    <repository>
+      <id>codecare01-libs-release</id>
+      <name>codecare01-releases</name>
+      <url>http://codecare01:8081/artifactory/libs-release-local</url>
+    </repository>
+    <snapshotRepository>
+      <id>codecare01-snapshot</id>
+      <name>codecare01-snapshots</name>
+      <url>http://codecare01:8081/artifactory/libs-snapshot-local</url>
+    </snapshotRepository>
+  </distributionManagement>
 </project>
