@@ -75,16 +75,4 @@
     </dependency>
   </dependencies>
 
-  <distributionManagement>
-    <repository>
-      <id>codecare01-libs-release</id>
-      <name>codecare01-releases</name>
-      <url>http://codecare01:8081/artifactory/libs-release-local</url>
-    </repository>
-    <snapshotRepository>
-      <id>codecare01-snapshot</id>
-      <name>codecare01-snapshots</name>
-      <url>http://codecare01:8081/artifactory/libs-snapshot-local</url>
-    </snapshotRepository>
-  </distributionManagement>
 </project>
