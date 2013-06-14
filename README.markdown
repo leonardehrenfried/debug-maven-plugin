@@ -36,27 +36,27 @@ you can call the plugin like this:
     mvn debug:conflict
 
 Alternatively you can establish the plugin in your build process
-
-  <build>
-    ...
-      <plugins>
-        <plugin>
-           <groupId>de.mytoys.maven.plugins</groupId>
-           <artifactId>debug-maven-plugin</artifactId>
-           <version>1.7-SNAPSHOT</version>
-           <configuration>
-             <failOnConflict>false</failOnConflict>
-           </configuration>
-           <executions>
-             <execution>
-               <phase>validate</phase>
-               <goals>
-                 <goal>conflict</goal>
-               </goals>
-             </execution>
-           </executions>
-         </plugin>
-     ...
-
+```xml
+<build>
+  ...
+  <plugins>
+    <plugin>
+       <groupId>de.mytoys.maven.plugins</groupId>
+       <artifactId>debug-maven-plugin</artifactId>
+       <version>1.7-SNAPSHOT</version>
+       <configuration>
+         <failOnConflict>false</failOnConflict>
+       </configuration>
+       <executions>
+         <execution>
+           <phase>validate</phase>
+           <goals>
+             <goal>conflict</goal>
+           </goals>
+         </execution>
+       </executions>
+     </plugin>
+ ...
+```
 Setting the configuration failOnConflict to true will cause the build to fail when any conflicts appear (paranoid mode).
 Default value for the parameter is false (sane).
