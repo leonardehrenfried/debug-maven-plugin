@@ -68,8 +68,7 @@ public class ConflictDependencyNodeVisitor implements DependencyNodeVisitor {
 		return buf.toString();
 	}
 
-	public boolean isConflictsFound()
-	{
+	public boolean isConflictsFound() {
 		return conflictsFound;
 	}
 

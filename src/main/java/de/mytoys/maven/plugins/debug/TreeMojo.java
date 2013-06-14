@@ -53,7 +53,5 @@ public class TreeMojo extends AbstractDebugMojo {
 	}
 
 	@Override
-	protected void postprocessResult()
-	{
-	}
+	protected void postprocessResult() {}
 }

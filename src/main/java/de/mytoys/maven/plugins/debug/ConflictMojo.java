@@ -35,10 +35,8 @@ public class ConflictMojo extends AbstractDebugMojo {
 	}
 
 	@Override
-	protected void postprocessResult() throws MojoExecutionException
-	{
-	 	if (errorFound && failOnConflict)
-	    {
+	protected void postprocessResult() throws MojoExecutionException {
+	 	if (errorFound && failOnConflict) {
 		    String s = "Conflicts found in conflict resolution";
 		    throw new MojoExecutionException(this, s, s);
 	    }
